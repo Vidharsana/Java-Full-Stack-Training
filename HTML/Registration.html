@@ -3,38 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MyPage</title>
+    <title>Registration</title>
 </head>
-
-    <h1>Registration Page</h1> 
-    <form>
-        <label for="name">Name </label>
-    <input type="text"><br>
-    <br>
-    <label for="DOB">DOB </label>
-    <input type="date"><br>
-    <br>
-    <label for="college">College </label>
-    <input type="text"><br>
-    <br>
-    <label for="department">Department  </label>
-    <input type="text"><br>
-    <br>
-    <label for="gender">Gender </label>
-        <input type="radio" name="gender" id="gender">Male
-        <input type="radio" name="gender" id="gender">Female
-    <br><br>
-    <label for="username">Username  </label>
-    <input type="text"><br>
-    <br>
-    <label for="Password">Password  </label>
-    <input type="password"><br>
-    <br>
-    <br>
-    <button type="submit" onclick="alert('User Registered')">Register</button>
-    <br>
-    <br><span>Already have an account</span>
-    <a href="./login1.html">Login</a>
-    </form>
+<body>
+    <center>
+        <h1>Registration Page</h1>
+        <table cellpadding="10">
+            <tr>
+                <td><label for="firstName">First Name:</label></td>
+                <td><input type="text" id="firstName"></td>
+            </tr>
+            <tr>
+                <td><label for="lastName">Last Name:</label></td>
+                <td><input type="text" id="lastName"></td>
+            </tr>
+            <tr>
+                <td><label for="email">Email :</label></td>
+                <td><input type="email" id="email"></td>
+            </tr>
+            <tr>
+                <td><label for="mobileNumber">Mobile Number:</label></td>
+                <td><input type="number" id="mobileNumber"></td>
+            </tr>
+            <tr>
+                <td><label for="dob">DOB:</label></td>
+                <td><input type="date" id="dob"></td>
+            </tr>
+            <tr>
+                <td><label for="username">UserName:</label></td>
+                <td><input type="text" id="username" required></td>
+            </tr>
+            <tr>
+                <td><label for="password">Password:</label></td>
+                <td><input type="password" id="password"></td>
+            </tr>
+            <tr>
+                <td><label for="gender">Gender:</label></td>
+                <td>
+                    <input type="radio" id="male" name="gender"> Male
+                    <input type="radio" id="female" name="gender"> Female
+                </td>
+            </tr>
+            <tr>
+                <td><label for="skills">Skills :</label></td>
+                <td>
+                    <input type="checkbox" id="c"> C
+                    <input type="checkbox" id="cpp"> C++
+                    <input type="checkbox" id="java"> Java
+                </td>
+            </tr>
+            <tr>
+                <td><label for="city">City :</label></td>
+                <td>
+                    <select name="city" id="city">
+                        <option value="Salem">Salem</option>
+                        <option value="Tirpur">Tirpur</option>
+                        <option value="Coimbatore">Coimbatore</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="address">Address:</label></td>
+                <td><textarea name="address" id="address" cols="20" rows="10"></textarea></td>
+            </tr>
+            <tr>
+                <td colspan="2"><button type="Submit" onclick="alert('User Registration')">Register</button></td>
+            </tr>
+        </table>
+        <br><br>
+        <span>Already Registered?</span>
+        <a href="./Login.html">Login</a>
+    </center>
 </body>
 </html>
