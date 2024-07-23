@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Window</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      
+      margin: 40px auto;
+      padding: 20px;
+      display: flex;
+      width:50%;
+      min-height: 100vh;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      border: 2px solid #100110;
+      background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .background-image {
+      position: absolute; 
+      top: 0;
+      left: 0;
+      display: flex;
+
+      width: 99.3%;
+      height: 99.3%;
+      background-image: url("https://img.freepik.com/premium-photo/stunning-laptops-image-collection_1199394-20917.jpg?ga=GA1.1.1884923599.1706676649&semt=ais_user_ai_gen"); /* Replace with your image path */
+      border: 3px solid white;
+      background-size: cover;
+      background-position: center;
+      
+    }
+
+    .login-container {
+      background-color: rgb(0,0,0,0.6);
+      padding: 40px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      position: relative; 
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: white;
+      font-family: 'Times New Roman', Times, serif;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 90%;
+      padding: 15px;
+      margin-bottom: 15px;
+      background-color: transparent;
+      border-bottom:1px solid white;
+      border-right: 0px;
+      color: white;
+    }
+
+    input[type="text"]::placeholder,
+    input[type="password"]::placeholder {
+      color: rgb(123, 122, 122);
+    }
+
+    .checkbox {
+      margin-bottom: 15px;
+    }
+
+    input[type="checkbox"] {
+      margin-right: 5px;
+    }
+
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 15px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #3e8e41;
+    }
+
+    .circle-image {
+      position: absolute; 
+      top: -50px; 
+      left: 50%;
+      transform: translateX(-50%); 
+      width: 100px;
+      height: 100px;
+      border-radius: 50%; 
+      background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ98uEv5MOpcoOa1MY1hU9VLWsS9wFfvxbvfw&s");
+      background-size: cover;
+      background-position: center;
+    }
+
+    .transparent-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+
+    label{
+      color: white;
+    }
+    
+    span{
+      font-family: 'Times New Roman', Times, serif;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+    <div class="login">  
+<div class="background-image"></div> 
+  <div class="transparent-overlay"></div> 
+  <div class="login-container">
+    <div class="circle-image"></div> 
+    <h1>LOGIN WINDOW</h1>
+    <form action="#">
+      <input type="text" placeholder="Your Email Address" id="username" name="username" required>
+    
+      <input type="password" placeholder="Your Password" id="password" name="password" required>
+      <div class="checkbox">
+        <input type="checkbox" name="remember" id="remember">
+        <label for="remember">Agree With <span><u>Terms & Condition</u></span></label>
+      </div>
+      <input type="submit" value="Login" class="btn">
+    </form>
+  </div>
+  </div>
+</body>
+</html>
