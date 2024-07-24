@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>String Functions</title>
+  <script>
+    function performStringOperation() {
+      const inputString = document.getElementById('inputString').value;
+      const selectedOperation = document.getElementById('operationSelect').value;
+      const resultsDiv = document.getElementById('results');
+      let result;
+      switch(selectedOperation) {
+        case 'length':
+          result = `Length: ${inputString.length}`;
+          break;
+        case 'charAt':
+          result = `CharAt: ${inputString.charAt(0)}`;
+          break;
+        case 'slice':
+          result = `Slice: ${inputString.slice(1, 4)}`;
+          break;
+        case 'substring':
+          result = `Substring: ${inputString.substring(2, 6)}`;
+          break;
+        case 'substr':
+          result = `Substr: ${inputString.substr(3, 2)}`;
+          break;
+        case 'uppercase':
+          result = `Uppercase: ${inputString.toUpperCase()}`;
+          break;
+        case 'lowercase':
+          result = `Lowercase: ${inputString.toLowerCase()}`;
+          break;
+        case 'concatenate':
+          result = `Concatenate: ${inputString.concat(' appended')}`;
+          break;
+        case 'trim':
+          result = `Trim: ${inputString.trim()}`;
+          break;
+        case 'trimStart':
+          result = `Trim Start: ${inputString.trimStart()}`;
+          break;
+        case 'trimEnd':
+          result = `Trim End: ${inputString.trimEnd()}`;
+          break;
+        case 'repeat':
+          result = `Repeat: ${inputString.repeat(3)}`;
+          break;
+        case 'replace':
+          result = `Replace: ${inputString.replace('a', 'b')}`;
+          break;
+        case 'replaceAll':
+          result = `Replace All: ${inputString.replaceAll('a', 'b')}`;
+          break;
+        case 'split':
+          result = `Split: ${inputString.split(' ')}`;
+          break;
+        default:
+          result = 'Invalid operation selected';
+      }
+      resultsDiv.innerHTML = `<p>${result}</p>`;
+    }
+  </script>
+</head>
+<body>
+  <div>
+    <label for="inputString">Enter a String:</label>
+    <input type="text" id="inputString"><br><br>
+    <label for="operationSelect">Select an operation:</label>
+    <select id="operationSelect">
+      <option value="length">Length</option>
+      <option value="charAt">CharAt</option>
+      <option value="slice">Slice</option>
+      <option value="substring">Substring</option>
+      <option value="substr">Substr</option>
+      <option value="uppercase">Uppercase</option>
+      <option value="lowercase">Lowercase</option>
+      <option value="concatenate">Concatenate</option>
+      <option value="trim">Trim</option>
+      <option value="trimStart">Trim Start</option>
+      <option value="trimEnd">Trim End</option>
+      <option value="repeat">Repeat</option>
+      <option value="replace">Replace</option>
+      <option value="replaceAll">Replace All</option>
+      <option value="split">Split</option>
+    </select><br><br>
+    <button onclick="performStringOperation()">Click</button>
+    <div id="results">
+    </div>
+  </div>
+</body>
+</html>

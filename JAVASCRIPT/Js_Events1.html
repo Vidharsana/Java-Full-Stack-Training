@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Events</title>
+    <script>
+        function myFunction() {
+            document.write("It's Vidhu");
+        }
+        function factorial() {
+            var a = parseInt(document.getElementById("n").value);
+            let ans = 1;
+            for (let i = 2; i <= a; i++) {
+                ans = ans * i;
+            }
+            document.getElementById("ans").innerHTML = `<font color='green'><b>${ans}</b></font>`;
+        }
+    </script>
+</head>
+<body>
+    <h3>On Focus and On Blur:</h3>
+    <input type="text" id="n" value="Enter position Number" onfocus="this.value=''" onblur="factorial()" />
+    <br><br>
+    <div id="ans"></div>
+    <h3>On Mouse Over</h3>
+    <button onmouseover="myFunction()">Mouse Over</button>
+    <br><br>
+    <h3>On Mouse Down</h3>
+    <button onmousedown="myFunction()">Mouse Down</button>
+    <br><br>
+    <h3>On Mouse Out</h3>
+    <button onmouseout="myFunction()">Mouse Out</button>
+    <br><br>
+    <h3>On Key Down</h3>
+    <input type="text" onkeydown="myFunction()" />
+    <br><br>
+    <h3>On Key Up</h3>
+    <input type="text" onkeyup="myFunction()" />
+    <br><br>
+    <h3>On Change</h3>
+    <select onchange="myFunction()">
+        <option value="option1">Option 1</option>
+        <option value="option2">Option 2</option>
+    </select>
+    <br><br>
+    <h3>On Submit</h3>
+    <form onsubmit="myFunction()">
+        <input type="submit" value="Submit" />
+    </form>
+    <br><br>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pattern</title>
+    <script>
+        function pattern() {
+            var a = parseInt(document.getElementById("n").value);
+            var ans = "";
+            for (let i = 1; i <= a; i++) {
+                for (let j = 1; j <= i; j++) {
+                    ans += "*";
+                }
+                ans += "<br>"; 
+            }
+            document.getElementById("ans").innerHTML = "<font color='green'><b>" + ans + "</b></font>";
+        }
+    </script>
+</head>
+<body>
+    Enter Number<input type="text" id="n" />
+    <br><br>
+    <button onclick="pattern()">Print</button>
+    <br><br>
+    <div id="ans"></div>
+</body>
+</html>
