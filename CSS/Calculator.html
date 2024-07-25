@@ -18,6 +18,8 @@
             background-color:rgb(34, 208, 208);
             cursor: pointer;
             color:white;
+            text-align: center;
+            font-size: x-large;
         }
         table{
             background-color: gray;
@@ -39,39 +41,82 @@
 <body>
         <table width="150vw" height="100vh" align="center" border="2">
             <tr>
-                <th colspan="4" align="start" style="background-color: white; color: #000;"><b>0</b></th>
+                <th colspan="4" align="start" style="background-color: white; color: #000;" id="result"><b>0</b></th>
             </tr>
             <tr>
-                <td width="14%" align="center">C</td>
-                <td width="14%" align="center">%</td>
-                <td width="14%" align="center"> <=</t>
-                <td width="14%" align="center">/</td>
+                <td width="14%" align="center" onclick="clearDisplay()">C</td>
+                <td width="14%" align="center" onclick="appendOperator('%')">%</td>
+                <td width="14%" align="center" onclick="deleteLast()"> <=</td>
+                <td width="14%" align="center" onclick="appendOperator('/')">/</td>
             </tr>
             <tr>
-                <td>7</td>
-                <td>8</td>
-                <td>9</td>
-                <td>*</td>
+                <td onclick="appendNumber(7)">7</td>
+                <td onclick="appendNumber(8)">8</td>
+                <td onclick="appendNumber(9)">9</td>
+                <td onclick="appendOperator('*')">*</td>
             </tr>
             <tr>
-                <td>4</td>
-                <td>5</td>
-                <td>6</td>
-                <td>-</td>
+                <td onclick="appendNumber(4)">4</td>
+                <td onclick="appendNumber(5)">5</td>
+                <td onclick="appendNumber(6)">6</td>
+                <td onclick="appendOperator('-')">-</td>
             </tr>
             <tr>
-                <td>1</td>
-                <td>2</td>
-                <td>3</td>
-                <td>+</td>
+                <td onclick="appendNumber(1)">1</td>
+                <td onclick="appendNumber(2)">2</td>
+                <td onclick="appendNumber(3)">3</td>
+                <td onclick="appendOperator('+')">+</td>
             </tr>
             <tr>
-                <td>00</td>
-                <td>0</td>
-                <td>.</td>
-                <td>=</td>
+                <td onclick="appendNumber(0)">00</td>
+                <td onclick="appendNumber(0)">0</td>
+                <td onclick="appendDecimal('.')">.</td>
+                <td onclick="calculate()">=</td>
             </tr>
     </table>
+    <script>
+        const clearDisplay = () => {
+            document.getElementById('result').innerHTML = '0';
+        }
+        const appendNumber = (num) => {
+            let result = document.getElementById('result');
+            if (result.innerHTML === '0') {
+                result.innerHTML = num;
+            } else {
+                result.innerHTML += num;
+            }
+        }
+        const appendOperator = (op) => {
+            let result = document.getElementById('result');
+            let lastChar = result.innerHTML[result.innerHTML.length - 1];
+            if (lastChar.match(/[0-9.]/)) {
+                result.innerHTML += op;
+            }
+        }
+        const appendDecimal = (dot) => {
+            let result = document.getElementById('result');
+            let lastNum = result.innerHTML.split(/[-+*/]/).slice(-1)[0];
+            if (!lastNum.includes(dot)) {
+                result.innerHTML += dot;
+            }
+        }
+        const deleteLast = () => {
+            let result = document.getElementById('result');
+            result.innerHTML = result.innerHTML.slice(0, -1);
+            if (result.innerHTML === '') {
+                result.innerHTML = '0';
+            }
+        }
+        const calculate = () => {
+            let result = document.getElementById('result');
+            let expression = result.innerHTML;
+            try {
+                let answer = eval(expression);
+                result.innerHTML = answer;
+            } catch (error) {
+                result.innerHTML = 'Invalid';
+            }
+        }
+    </script>
 </body>
 </html>
-
