@@ -9,6 +9,7 @@ import { ContactComponent } from './contact/contact.component';
 import { AboutComponent } from './about/about.component';
 import { RouterModule,Routes } from '@angular/router';
 import { CalculatorService } from './calculator.service';
+import { FactorailService } from './factorail.service';
 
 
 const ROUTES : Routes = [
@@ -33,7 +34,8 @@ const ROUTES : Routes = [
   ],
   providers: [
     provideClientHydration(),
-    CalculatorService
+    CalculatorService,
+    FactorailService
   ],
   bootstrap: [AppComponent]
 })
