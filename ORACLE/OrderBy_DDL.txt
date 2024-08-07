@@ -1,0 +1,52 @@
+SQL> select * from tbl_employee order by eid;
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       101 Vidhu                      2000
+       101                            9000
+       101 Prathi                     9000
+       102 Ani                        3000
+       103 Raj                        4000
+       104 AlexRaj                    5000
+
+6 rows selected.
+
+SQL> select * from tbl_employee order by eid desc;
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       104 AlexRaj                    5000
+       103 Raj                        4000
+       102 Ani                        3000
+       101                            9000
+       101 Vidhu                      2000
+       101 Prathi                     9000
+
+6 rows selected.
+
+
+SQL> select * from tbl_employee order by eid, ename;
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       101 Prathi                     9000
+       101 Vidhu                      2000
+       101                            9000
+       102 Ani                        3000
+       103 Raj                        4000
+       104 AlexRaj                    5000
+
+6 rows selected.
+
+SQL> select * from tbl_employee order by eid, ename desc;
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       101                            9000
+       101 Vidhu                      2000
+       101 Prathi                     9000
+       102 Ani                        3000
+       103 Raj                        4000
+       104 AlexRaj                    5000
+
+6 rows selected.
