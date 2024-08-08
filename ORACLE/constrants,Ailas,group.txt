@@ -1,0 +1,185 @@
+SQL> alter table tbl_employee add DNO number;
+
+Table altered.
+
+SQL> update tbl_employee set DNO='10' where eid=101;
+
+1 row updated.
+
+SQL> update tbl_employee set DNO='9' where eid=102;
+
+1 row updated.
+
+SQL> update tbl_employee set DNO='8' where eid=104;
+
+1 row updated.
+
+SQL> update tbl_employee set DNO='20' where eid=103;
+
+1 row updated.
+
+SQL> update tbl_employee set DNO='30' where eid=105;
+
+1 row updated.
+
+SQL> select * from tbl_employee;
+
+       EID ENAME                   ESALARY        DNO
+---------- -------------------- ---------- ----------
+       101 Vidhu                      2000         10
+       102 Ani                        3000          9
+       103 Raj                        4000         20
+       104 Thari                      7000          8
+       105 Hemanth                    8000         30
+SQL> select dno, count(*) from tbl_employee group by dno;
+
+       DNO   COUNT(*)
+---------- ----------
+        30          1
+        20          1
+         8          1
+        10          1
+         9          1
+SQL> select dno, count(*) ,sum(esalary),avg(esalary),min(esalary),max(esalar
+y)from tbl_employee group by dno;
+
+       DNO   COUNT(*) SUM(ESALARY) AVG(ESALARY) MIN(ESALARY) MAX(ESALARY)
+---------- ---------- ------------ ------------ ------------ ------------
+        30          1         8000         8000         8000         8000
+        20          1         4000         4000         4000         4000
+         8          1         7000         7000         7000         7000
+        10          1         2000         2000         2000         2000
+         9          1         3000         3000         3000         3000
+QL> select dno, count(*) from tbl_employee group by dno order by dno;
+
+       DNO   COUNT(*)
+---------- ----------
+         8          1
+         9          1
+        10          1
+        20          1
+        30          1
+
+SQL> select dno, count(*) ,sum(esalary),avg(esalary),min(esalary),max(esalary)from tbl_employee group by dno order by dno;
+
+       DNO   COUNT(*) SUM(ESALARY) AVG(ESALARY) MIN(ESALARY) MAX(ESALARY)
+---------- ---------- ------------ ------------ ------------ ------------
+         8          1         7000         7000         7000         7000
+         9          1         3000         3000         3000         3000
+        10          1         2000         2000         2000         2000
+        20          1         4000         4000         4000         4000
+        30          1         8000         8000         8000         8000
+SQL> select dno, count(*) ,sum(esalary),avg(esalary),min(esalary),max(esalary)from tbl_employee group by dno having min(esalary)>3000 order by dno;
+
+       DNO   COUNT(*) SUM(ESALARY) AVG(ESALARY) MIN(ESALARY) MAX(ESALARY)
+---------- ---------- ------------ ------------ ------------ ------------
+         8          1         7000         7000         7000         7000
+        20          1         4000         4000         4000         4000
+        30          1         8000         8000         8000         8000
+GROUP BY clause is used with the SELECT statement.
+In the query, the GROUP BY clause is placed after the WHERE clause.
+In the query, the GROUP BY clause is placed before the ORDER BY clause if used.
+In the query, the Group BY clause is placed before the Having clause.
+Place condition in the having clause.
+SQL> create table tbl_student(rno number(5) primary key,s_name varchar2(20) not null,s_age number(3) check(s_age>0),s_email varchar2(20) unique,s_location varchar2(20) default 'Erode');
+
+Table created.
+
+SQL> insert into tbl_student (rno,s_name,s_age,s_email)values (102,'Prathi','10','prathi4915@gmail.com');
+
+1 row created.
+
+SQL>  select * from tbl_student;
+
+       RNO S_NAME                    S_AGE S_EMAIL
+---------- -------------------- ---------- --------------------
+S_LOCATION
+--------------------
+       102 Hemanth                       10 hemanth4915@gmail.com
+Erode
+SQL> create table department(dno number(5) primary key,dname varchar2(20));
+
+Table created.
+
+SQL> create table employee(eid number(5) primary key,ename varchar2(20),esalary number(5),dno number(5),foreign key(dno) references department(dno));
+
+Table created.
+
+SQL> insert into department values(10,'CSBS');
+
+1 row created.
+
+SQL>  insert into employee values (101,'Hemanth',3000,10);
+
+1 row created.
+
+SQL> insert into employee values (102,'Thari',6000,10);
+
+1 row created.
+
+SQL>  select * from employee;
+
+       EID ENAME                   ESALARY        DNO
+---------- -------------------- ---------- ----------
+       101 Hemanth                     3000         10
+       102 Thari                       6000         10
+
+SQL> select * from department;
+
+       DNO DNAME
+---------- --------------------
+        10 CSBS
+
+SQL> create view view1 as select * from employee where dno=10;
+
+View created.
+
+SQL>  select * from view1;
+
+       EID ENAME                   ESALARY        DNO
+---------- -------------------- ---------- ----------
+       101 Hemanth                     3000         10
+       102 Thari                       6000         10
+
+SQL> select * from employee;
+
+       EID ENAME                   ESALARY        DNO
+---------- -------------------- ---------- ----------
+       101 Hemanth                     3000         10
+       102 Thari                       6000         10
+SQL>  drop view myview;
+
+View dropped.
+SQL> select eid,ename from tbl_employee;
+
+       EID ENAME
+---------- --------------------
+       101 Vidhu
+       102 Ani
+       103 Thari
+       104 Hemanth
+       105 shanu
+
+SQL> select eid as "Employee Id",ename "Employee Name" from tbl_employee;
+
+Employee Id Employee Name
+----------- --------------------
+        101 Vidhu\
+        102 Ani
+        103 Thari
+        104 Hemanth
+        105 shanu
+
+SQL>  select dno,count(*) from employee group by dno;
+
+       DNO   COUNT(*)
+---------- ----------
+        10          2
+
+SQL> select dno,count(*) as "Total No of Employees" from employee group by dno;
+
+       DNO Total No of Employees
+---------- ---------------------
+        10                     2
+
+SQL>
