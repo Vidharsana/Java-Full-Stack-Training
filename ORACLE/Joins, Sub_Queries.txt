@@ -1,0 +1,765 @@
+--> create table agents (Agent_code varchar(5), Agent_name varchar2(20), Working_Area varchar(20));
+
+Table created.
+
+--> desc agents
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ AGENT_CODE                                         VARCHAR2(5)
+ AGENT_NAME                                         VARCHAR2(20)
+ WORKING_AREA                                       VARCHAR2(20)
+
+--> insert into agents values('A101', 'agent1', 'chennai');
+
+1 row created.
+
+--> insert into agents values('A102', 'agent2', 'chennai');
+
+1 row created.
+
+--> insert into agents values('A103', 'agent3', 'Bangalore');
+
+1 row created.
+
+--> insert into agents values('A104', 'agent4', 'Bangalore');
+
+1 row created.
+
+--> commit;
+
+Commit complete.
+
+--> select * from agents;
+
+AGENT AGENT_NAME           WORKING_AREA
+----- -------------------- --------------------
+A101  agent1               chennai
+A102  agent2               chennai
+A103  agent3               Bangalore
+A104  agent4               Bangalore
+
+--> create table customers (customer_code varchar(5), customer_name varchar2(20), customer_Are
+a varchar(20));
+
+Table created.
+
+--> desc customers;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ CUSTOMER_CODE                                      VARCHAR2(5)
+ CUSTOMER_NAME                                      VARCHAR2(20)
+ CUSTOMER_AREA                                      VARCHAR2(20)
+
+--> insert into customers values('C101', 'customer1', 'chennai');
+
+1 row created.
+
+--> insert into customers values('C102', 'customer2', 'chennai');
+
+1 row created.
+
+--> insert into customers values('C103', 'customer3', 'chennai');
+
+1 row created.
+
+--> insert into customers values('C104', 'customer4', 'Bangalore');
+
+1 row created.
+
+--> insert into customers values('C105', 'customer5', 'Bangalore');
+
+1 row created.
+
+--> commit;
+
+Commit complete.
+
+--> select * from customers;
+
+CUSTO CUSTOMER_NAME        CUSTOMER_AREA
+----- -------------------- --------------------
+C101  customer1            chennai
+C102  customer2            chennai
+C103  customer3            chennai
+C104  customer4            Bangalore
+C105  customer5            Bangalore
+
+
+--> select agents.agent_name, customers.customer_name, customers.customer_area from agents join customers on agents.working_area = customers.customer_area;
+
+AGENT_NAME           CUSTOMER_NAME        CUSTOMER_AREA
+-------------------- -------------------- --------------------
+agent2               customer1            chennai
+agent1               customer1            chennai
+agent2               customer2            chennai
+agent1               customer2            chennai
+agent2               customer3            chennai
+agent1               customer3            chennai
+agent4               customer4            Bangalore
+agent3               customer4            Bangalore
+agent4               customer5            Bangalore
+agent3               customer5            Bangalore
+
+--> select a.agent_name, c.customer_name, c.customer_area from agents a join customers c on a.working_ar
+ea = c.customer_area;
+
+AGENT_NAME           CUSTOMER_NAME        CUSTOMER_AREA
+-------------------- -------------------- --------------------
+agent2               customer1            chennai
+agent1               customer1            chennai
+agent2               customer2            chennai
+agent1               customer2            chennai
+agent2               customer3            chennai
+agent1               customer3            chennai
+agent4               customer4            Bangalore
+agent3               customer4            Bangalore
+agent4               customer5            Bangalore
+agent3               customer5            Bangalore
+
+10 rows selected.
+
+--> select agents.agent_name, customers.customer_name, customers.customer_area from agents join customers on agents.working_area <> customers.customer_area;
+
+AGENT_NAME           CUSTOMER_NAME        CUSTOMER_AREA
+-------------------- -------------------- --------------------
+agent1               customer4            Bangalore
+agent1               customer5            Bangalore
+agent2               customer4            Bangalore
+agent2               customer5            Bangalore
+agent3               customer1            chennai
+agent3               customer2            chennai
+agent3               customer3            chennai
+agent4               customer1            chennai
+agent4               customer2            chennai
+agent4               customer3            chennai
+
+10 rows selected.
+
+
+--> insert into agents values('A105', 'agent5', 'New York');
+
+1 row created.
+
+--> insert into customers values('C106', 'customer6', 'Delhi');
+
+1 row created.
+
+--> commit;
+
+Commit complete.
+
+--> select * from agents;
+
+AGENT AGENT_NAME           WORKING_AREA
+----- -------------------- --------------------
+A101  agent1               chennai
+A102  agent2               chennai
+A103  agent3               Bangalore
+A104  agent4               Bangalore
+A105  agent5               New York
+
+--> select * from customers;
+
+CUSTO CUSTOMER_NAME        CUSTOMER_AREA
+----- -------------------- --------------------
+C101  customer1            chennai
+C102  customer2            chennai
+C103  customer3            chennai
+C104  customer4            Bangalore
+C105  customer5            Bangalore
+C106  customer6            Delhi
+
+6 rows selected.
+
+--> select * from agents left outer join customers on agents.working_area = customers.customer_area;
+
+AGENT AGENT_NAME           WORKING_AREA         CUSTO CUSTOMER_NAME
+----- -------------------- -------------------- ----- --------------------
+CUSTOMER_AREA
+--------------------
+A102  agent2               chennai              C101  customer1
+chennai
+
+A101  agent1               chennai              C101  customer1
+chennai
+
+A102  agent2               chennai              C102  customer2
+chennai
+
+
+AGENT AGENT_NAME           WORKING_AREA         CUSTO CUSTOMER_NAME
+----- -------------------- -------------------- ----- --------------------
+CUSTOMER_AREA
+--------------------
+A101  agent1               chennai              C102  customer2
+chennai
+
+A102  agent2               chennai              C103  customer3
+chennai
+
+A101  agent1               chennai              C103  customer3
+chennai
+
+
+AGENT AGENT_NAME           WORKING_AREA         CUSTO CUSTOMER_NAME
+----- -------------------- -------------------- ----- --------------------
+CUSTOMER_AREA
+--------------------
+A104  agent4               Bangalore            C104  customer4
+Bangalore
+
+A103  agent3               Bangalore            C104  customer4
+Bangalore
+
+A104  agent4               Bangalore            C105  customer5
+Bangalore
+
+
+AGENT AGENT_NAME           WORKING_AREA         CUSTO CUSTOMER_NAME
+----- -------------------- -------------------- ----- --------------------
+CUSTOMER_AREA
+--------------------
+A103  agent3               Bangalore            C105  customer5
+Bangalore
+
+A105  agent5               New York
+
+
+
+11 rows selected.
+
+--> select * from agents left join customers on agents.working_area = customers.customer_area;
+
+AGENT AGENT_NAME           WORKING_AREA         CUSTO CUSTOMER_NAME
+----- -------------------- -------------------- ----- --------------------
+CUSTOMER_AREA
+--------------------
+A102  agent2               chennai              C101  customer1
+chennai
+
+A101  agent1               chennai              C101  customer1
+chennai
+
+A102  agent2               chennai              C102  customer2
+chennai
+
+
+AGENT AGENT_NAME           WORKING_AREA         CUSTO CUSTOMER_NAME
+----- -------------------- -------------------- ----- --------------------
+CUSTOMER_AREA
+--------------------
+A101  agent1               chennai              C102  customer2
+chennai
+
+A102  agent2               chennai              C103  customer3
+chennai
+
+A101  agent1               chennai              C103  customer3
+chennai
+
+
+AGENT AGENT_NAME           WORKING_AREA         CUSTO CUSTOMER_NAME
+----- -------------------- -------------------- ----- --------------------
+CUSTOMER_AREA
+--------------------
+A104  agent4               Bangalore            C104  customer4
+Bangalore
+
+A103  agent3               Bangalore            C104  customer4
+Bangalore
+
+A104  agent4               Bangalore            C105  customer5
+Bangalore
+
+
+AGENT AGENT_NAME           WORKING_AREA         CUSTO CUSTOMER_NAME
+----- -------------------- -------------------- ----- --------------------
+CUSTOMER_AREA
+--------------------
+A103  agent3               Bangalore            C105  customer5
+Bangalore
+
+A105  agent5               New York
+
+
+
+11 rows selected.
+
+--> select * from agents , customers where agents.working_area = customers.customer_area(+);
+
+AGENT AGENT_NAME           WORKING_AREA         CUSTO CUSTOMER_NAME
+----- -------------------- -------------------- ----- --------------------
+CUSTOMER_AREA
+--------------------
+A102  agent2               chennai              C101  customer1
+chennai
+
+A101  agent1               chennai              C101  customer1
+chennai
+
+A102  agent2               chennai              C102  customer2
+chennai
+
+
+AGENT AGENT_NAME           WORKING_AREA         CUSTO CUSTOMER_NAME
+----- -------------------- -------------------- ----- --------------------
+CUSTOMER_AREA
+--------------------
+A101  agent1               chennai              C102  customer2
+chennai
+
+A102  agent2               chennai              C103  customer3
+chennai
+
+A101  agent1               chennai              C103  customer3
+chennai
+
+
+AGENT AGENT_NAME           WORKING_AREA         CUSTO CUSTOMER_NAME
+----- -------------------- -------------------- ----- --------------------
+CUSTOMER_AREA
+--------------------
+A104  agent4               Bangalore            C104  customer4
+Bangalore
+
+A103  agent3               Bangalore            C104  customer4
+Bangalore
+
+A104  agent4               Bangalore            C105  customer5
+Bangalore
+
+
+AGENT AGENT_NAME           WORKING_AREA         CUSTO CUSTOMER_NAME
+----- -------------------- -------------------- ----- --------------------
+CUSTOMER_AREA
+--------------------
+A103  agent3               Bangalore            C105  customer5
+Bangalore
+
+A105  agent5               New York
+
+
+
+11 rows selected.
+
+--> select * from agents right outer join customers on agents.working_area = customers.customer_area;
+
+AGENT AGENT_NAME           WORKING_AREA         CUSTO CUSTOMER_NAME
+----- -------------------- -------------------- ----- --------------------
+CUSTOMER_AREA
+--------------------
+A101  agent1               chennai              C103  customer3
+chennai
+
+A101  agent1               chennai              C102  customer2
+chennai
+
+A101  agent1               chennai              C101  customer1
+chennai
+
+
+AGENT AGENT_NAME           WORKING_AREA         CUSTO CUSTOMER_NAME
+----- -------------------- -------------------- ----- --------------------
+CUSTOMER_AREA
+--------------------
+A102  agent2               chennai              C103  customer3
+chennai
+
+A102  agent2               chennai              C102  customer2
+chennai
+
+A102  agent2               chennai              C101  customer1
+chennai
+
+
+AGENT AGENT_NAME           WORKING_AREA         CUSTO CUSTOMER_NAME
+----- -------------------- -------------------- ----- --------------------
+CUSTOMER_AREA
+--------------------
+A103  agent3               Bangalore            C105  customer5
+Bangalore
+
+A103  agent3               Bangalore            C104  customer4
+Bangalore
+
+A104  agent4               Bangalore            C105  customer5
+Bangalore
+
+
+AGENT AGENT_NAME           WORKING_AREA         CUSTO CUSTOMER_NAME
+----- -------------------- -------------------- ----- --------------------
+CUSTOMER_AREA
+--------------------
+A104  agent4               Bangalore            C104  customer4
+Bangalore
+
+                                                C106  customer6
+Delhi
+
+
+11 rows selected.
+
+--> select * from agents right join customers on agents.working_area = customers.customer_area;
+
+AGENT AGENT_NAME           WORKING_AREA         CUSTO CUSTOMER_NAME
+----- -------------------- -------------------- ----- --------------------
+CUSTOMER_AREA
+--------------------
+A101  agent1               chennai              C103  customer3
+chennai
+
+A101  agent1               chennai              C102  customer2
+chennai
+
+A101  agent1               chennai              C101  customer1
+chennai
+
+
+AGENT AGENT_NAME           WORKING_AREA         CUSTO CUSTOMER_NAME
+----- -------------------- -------------------- ----- --------------------
+CUSTOMER_AREA
+--------------------
+A102  agent2               chennai              C103  customer3
+chennai
+
+A102  agent2               chennai              C102  customer2
+chennai
+
+A102  agent2               chennai              C101  customer1
+chennai
+
+
+AGENT AGENT_NAME           WORKING_AREA         CUSTO CUSTOMER_NAME
+----- -------------------- -------------------- ----- --------------------
+CUSTOMER_AREA
+--------------------
+A103  agent3               Bangalore            C105  customer5
+Bangalore
+
+A103  agent3               Bangalore            C104  customer4
+Bangalore
+
+A104  agent4               Bangalore            C105  customer5
+Bangalore
+
+
+AGENT AGENT_NAME           WORKING_AREA         CUSTO CUSTOMER_NAME
+----- -------------------- -------------------- ----- --------------------
+CUSTOMER_AREA
+--------------------
+A104  agent4               Bangalore            C104  customer4
+Bangalore
+
+                                                C106  customer6
+Delhi
+
+
+11 rows selected.
+
+
+--> select * from agents , customers where agents.working_area(+) = customers.customer_area;
+
+AGENT AGENT_NAME           WORKING_AREA         CUSTO CUSTOMER_NAME
+----- -------------------- -------------------- ----- --------------------
+CUSTOMER_AREA
+--------------------
+A101  agent1               chennai              C103  customer3
+chennai
+
+A101  agent1               chennai              C102  customer2
+chennai
+
+A101  agent1               chennai              C101  customer1
+chennai
+
+
+AGENT AGENT_NAME           WORKING_AREA         CUSTO CUSTOMER_NAME
+----- -------------------- -------------------- ----- --------------------
+CUSTOMER_AREA
+--------------------
+A102  agent2               chennai              C103  customer3
+chennai
+
+A102  agent2               chennai              C102  customer2
+chennai
+
+A102  agent2               chennai              C101  customer1
+chennai
+
+
+AGENT AGENT_NAME           WORKING_AREA         CUSTO CUSTOMER_NAME
+----- -------------------- -------------------- ----- --------------------
+CUSTOMER_AREA
+--------------------
+A103  agent3               Bangalore            C105  customer5
+Bangalore
+
+A103  agent3               Bangalore            C104  customer4
+Bangalore
+
+A104  agent4               Bangalore            C105  customer5
+Bangalore
+
+
+AGENT AGENT_NAME           WORKING_AREA         CUSTO CUSTOMER_NAME
+----- -------------------- -------------------- ----- --------------------
+CUSTOMER_AREA
+--------------------
+A104  agent4               Bangalore            C104  customer4
+Bangalore
+
+                                                C106  customer6
+Delhi
+
+
+11 rows selected.
+
+--> select * from agents full join customers on agents.working_area = customers.customer_area;
+
+AGENT AGENT_NAME           WORKING_AREA         CUSTO CUSTOMER_NAME
+----- -------------------- -------------------- ----- --------------------
+CUSTOMER_AREA
+--------------------
+A102  agent2               chennai              C101  customer1
+chennai
+
+A101  agent1               chennai              C101  customer1
+chennai
+
+A102  agent2               chennai              C102  customer2
+chennai
+
+
+AGENT AGENT_NAME           WORKING_AREA         CUSTO CUSTOMER_NAME
+----- -------------------- -------------------- ----- --------------------
+CUSTOMER_AREA
+--------------------
+A101  agent1               chennai              C102  customer2
+chennai
+
+A102  agent2               chennai              C103  customer3
+chennai
+
+A101  agent1               chennai              C103  customer3
+chennai
+
+
+AGENT AGENT_NAME           WORKING_AREA         CUSTO CUSTOMER_NAME
+----- -------------------- -------------------- ----- --------------------
+CUSTOMER_AREA
+--------------------
+A104  agent4               Bangalore            C104  customer4
+Bangalore
+
+A103  agent3               Bangalore            C104  customer4
+Bangalore
+
+A104  agent4               Bangalore            C105  customer5
+Bangalore
+
+
+AGENT AGENT_NAME           WORKING_AREA         CUSTO CUSTOMER_NAME
+----- -------------------- -------------------- ----- --------------------
+CUSTOMER_AREA
+--------------------
+A103  agent3               Bangalore            C105  customer5
+Bangalore
+
+                                                C106  customer6
+Delhi
+
+A105  agent5               New York
+
+
+
+12 rows selected.
+
+--> select * from agents full join customers on agents.working_area = customers.customer_area;
+
+AGENT AGENT_NAME           WORKING_AREA         CUSTO CUSTOMER_NAME
+----- -------------------- -------------------- ----- --------------------
+CUSTOMER_AREA
+--------------------
+A102  agent2               chennai              C101  customer1
+chennai
+
+A101  agent1               chennai              C101  customer1
+chennai
+
+A102  agent2               chennai              C102  customer2
+chennai
+
+
+AGENT AGENT_NAME           WORKING_AREA         CUSTO CUSTOMER_NAME
+----- -------------------- -------------------- ----- --------------------
+CUSTOMER_AREA
+--------------------
+A101  agent1               chennai              C102  customer2
+chennai
+
+A102  agent2               chennai              C103  customer3
+chennai
+
+A101  agent1               chennai              C103  customer3
+chennai
+
+
+AGENT AGENT_NAME           WORKING_AREA         CUSTO CUSTOMER_NAME
+----- -------------------- -------------------- ----- --------------------
+CUSTOMER_AREA
+--------------------
+A104  agent4               Bangalore            C104  customer4
+Bangalore
+
+A103  agent3               Bangalore            C104  customer4
+Bangalore
+
+A104  agent4               Bangalore            C105  customer5
+Bangalore
+
+
+AGENT AGENT_NAME           WORKING_AREA         CUSTO CUSTOMER_NAME
+----- -------------------- -------------------- ----- --------------------
+CUSTOMER_AREA
+--------------------
+A103  agent3               Bangalore            C105  customer5
+Bangalore
+
+                                                C106  customer6
+Delhi
+
+A105  agent5               New York
+
+
+
+12 rows selected.
+
+--> select a.agent_code, b.agent_name from agents a, agents b where a.working_area = b.working_area;
+
+AGENT AGENT_NAME
+----- --------------------
+A102  agent1
+A101  agent1
+A102  agent2
+A101  agent2
+A104  agent3
+A103  agent3
+A104  agent4
+A103  agent4
+A105  agent5
+
+9 rows selected.
+
+--> select agents.agent_name, customers.customer_name, customers.customer_area from agents cross join cu
+stomers;
+
+AGENT_NAME           CUSTOMER_NAME        CUSTOMER_AREA
+-------------------- -------------------- --------------------
+agent1               customer1            chennai
+agent1               customer2            chennai
+agent1               customer3            chennai
+agent1               customer4            Bangalore
+agent1               customer5            Bangalore
+agent1               customer6            Delhi
+agent2               customer1            chennai
+agent2               customer2            chennai
+agent2               customer3            chennai
+agent2               customer4            Bangalore
+agent2               customer5            Bangalore
+
+AGENT_NAME           CUSTOMER_NAME        CUSTOMER_AREA
+-------------------- -------------------- --------------------
+agent2               customer6            Delhi
+agent3               customer1            chennai
+agent3               customer2            chennai
+agent3               customer3            chennai
+agent3               customer4            Bangalore
+agent3               customer5            Bangalore
+agent3               customer6            Delhi
+agent4               customer1            chennai
+agent4               customer2            chennai
+agent4               customer3            chennai
+agent4               customer4            Bangalore
+
+AGENT_NAME           CUSTOMER_NAME        CUSTOMER_AREA
+-------------------- -------------------- --------------------
+agent4               customer5            Bangalore
+agent4               customer6            Delhi
+agent5               customer1            chennai
+agent5               customer2            chennai
+agent5               customer3            chennai
+agent5               customer4            Bangalore
+agent5               customer5            Bangalore
+agent5               customer6            Delhi
+
+30 rows selected.
+
+--> select agents.agent_name, customers.customer_name, customers.customer_area from agents natural join
+customers;
+
+AGENT_NAME           CUSTOMER_NAME        CUSTOMER_AREA
+-------------------- -------------------- --------------------
+agent1               customer1            chennai
+agent1               customer2            chennai
+agent1               customer3            chennai
+agent1               customer4            Bangalore
+agent1               customer5            Bangalore
+agent1               customer6            Delhi
+agent2               customer1            chennai
+agent2               customer2            chennai
+agent2               customer3            chennai
+agent2               customer4            Bangalore
+agent2               customer5            Bangalore
+
+AGENT_NAME           CUSTOMER_NAME        CUSTOMER_AREA
+-------------------- -------------------- --------------------
+agent2               customer6            Delhi
+agent3               customer1            chennai
+agent3               customer2            chennai
+agent3               customer3            chennai
+agent3               customer4            Bangalore
+agent3               customer5            Bangalore
+agent3               customer6            Delhi
+agent4               customer1            chennai
+agent4               customer2            chennai
+agent4               customer3            chennai
+agent4               customer4            Bangalore
+
+AGENT_NAME           CUSTOMER_NAME        CUSTOMER_AREA
+-------------------- -------------------- --------------------
+agent4               customer5            Bangalore
+agent4               customer6            Delhi
+agent5               customer1            chennai
+agent5               customer2            chennai
+agent5               customer3            chennai
+agent5               customer4            Bangalore
+agent5               customer5            Bangalore
+agent5               customer6            Delhi
+
+30 rows selected.
+
+--> select * from customers where customer_area = (select working_area from agents where agent_code = 'A
+101');
+
+CUSTO CUSTOMER_NAME        CUSTOMER_AREA
+----- -------------------- --------------------
+C101  customer1            chennai
+C102  customer2            chennai
+C103  customer3            chennai
+
+--> select * from customers where customer_area in (select working_area from agents where agent_code = '
+A101' or agent_code = 'A104');
+
+CUSTO CUSTOMER_NAME        CUSTOMER_AREA
+----- -------------------- --------------------
+C103  customer3            chennai
+C102  customer2            chennai
+C101  customer1            chennai
+C105  customer5            Bangalore
+C104  customer4            Bangalore
+
+--> select * from customers where customer_area not in (select working_area from agents where agent_code = 'A101' or agent_code = 'A104');
+
+CUSTO CUSTOMER_NAME        CUSTOMER_AREA
+----- -------------------- --------------------
+C106  customer6            Delhi
